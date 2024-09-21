@@ -18,7 +18,7 @@ const AnalyticsDashboard = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const studentsResponse = await axios.get('/api/students');
+        const studentsResponse = await axios.get('https://school-management-app-back.onrender.com/api/students');
 
         setStudentsData(studentsResponse.data || []);
       } catch (error) {
