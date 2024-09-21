@@ -90,7 +90,9 @@ const ClassesDashboard = ({ user }) => {
                 <th style={{ fontFamily: 'monospace' }} className="py-2 px-4 bg-rose-400  shadow-xl ">Year</th>
                 <th style={{ fontFamily: 'monospace' }} className="py-2 px-4 bg-rose-400 shadow-xl ">Teacher</th>
                 <th style={{ fontFamily: 'monospace' }} className="py-2 px-4 bg-rose-400 shadow-xl">Fees</th>
+                {user.role == 'admin' ? <>
                 <th style={{ fontFamily: 'monospace' }} className="py-2 px-4 bg-rose-400 shadow-xl">Actions</th>
+                </> : <></>}
               </tr>
             </thead>
             <tbody>
@@ -101,10 +103,12 @@ const ClassesDashboard = ({ user }) => {
                     <td style={{ fontFamily: 'monospace' }} className="py-2 px-4  shadow-xl rounded-xl">{classData.year}</td>
                     <td style={{ fontFamily: 'monospace' }} className="py-2 px-4  shadow-xl rounded-xl">{classData.teacher ? classData.teacher.name : 'N/A'}</td>
                     <td style={{ fontFamily: 'monospace' }} className="py-2 px-4  shadow-xl rounded-xl">${classData.fees}</td>
+                    {user.role == 'admin' ? <>
                     <td style={{ fontFamily: 'monospace' }} className="py-2 px-4  shadow-xl rounded-xl flex justify-center">
                       <button onClick={() => handleEdit(classData)} className="bg-orange-400 text-white px-3 py-1 mr-4 rounded">Edit</button>
                       <button onClick={() => handleDelete(classData._id)} className="bg-blue-500 text-white px-3 py-1 rounded">Delete</button>
                     </td>
+                    </> : <></>}
                   </tr>
                 ))
               ) : (

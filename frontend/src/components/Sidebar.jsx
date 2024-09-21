@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import boy from '../assests/boy.webp'
 
 const Sidebar = () => {
   const maleProfile = `https://avatar.iran.liara.run/public/boy`
@@ -10,7 +11,7 @@ const Sidebar = () => {
       </div>
       <nav className="mt-10">
         <Link to="/profile" className="block w-32 m-auto p-4 my-2">
-          <img src={maleProfile} alt="img" />
+          <img className='w-52' src={boy} alt="img" />
         </Link>
         <Link to="/" className="flex bg-white rounded-l-xl ml-4 my-2 text-black font-mono justify-end px-6 py-4 hover:text-white hover:bg-gray-800">
           Dashboard

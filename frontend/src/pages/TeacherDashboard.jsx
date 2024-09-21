@@ -102,7 +102,9 @@ const TeacherDashboard = ({ user }) => {
                 <th style={{ fontFamily: 'monospace' }} className="py-2 px-4 bg-lime-200 shadow-xl">Contact</th>
                 <th style={{ fontFamily: 'monospace' }} className="py-2 px-4 bg-lime-200 shadow-xl">Salary</th>
                 <th style={{ fontFamily: 'monospace' }} className="py-2 px-4 bg-lime-200 shadow-xl">Class Assigned</th>
-                <th style={{ fontFamily: 'monospace' }} className="py-2 px-4 bg-lime-200 shadow-xl">Actions</th>
+                {user.role == 'admin' ? <>
+                  <th style={{ fontFamily: 'monospace' }} className="py-2 px-4 bg-lime-200 shadow-xl">Actions</th>
+                </> : <></>}
               </tr>
             </thead>
             <tbody>
@@ -115,10 +117,12 @@ const TeacherDashboard = ({ user }) => {
                     <td style={{ fontFamily: 'monospace' }} className="py-2 px-4  shadow-xl rounded-xl">{teacherData.contactDetails}</td>
                     <td style={{ fontFamily: 'monospace' }} className="py-2 px-4  shadow-xl rounded-xl">{teacherData.salary}</td>
                     <td style={{ fontFamily: 'monospace' }} className="py-2 px-4  shadow-xl rounded-xl">{teacherData.classAssigned ? teacherData.classAssigned.name : 'N/A'}</td>
-                    <td style={{ fontFamily: 'monospace' }} className="py-2 px-4  shadow-xl rounded-xl ">
-                      <button onClick={() => handleEdit(teacherData)} className="bg-orange-400 text-white px-3 mb-1 py-1 rounded">Edit</button>
-                      <button onClick={() => handleDelete(teacherData._id)} className="bg-blue-500 text-white px-3 py-1 rounded">Delete</button>
-                    </td>
+                    {user.role == 'admin' ? <>
+                      <td style={{ fontFamily: 'monospace' }} className="py-2 px-4  shadow-xl rounded-xl ">
+                        <button onClick={() => handleEdit(teacherData)} className="bg-orange-400 text-white px-3 mb-1 py-1 rounded">Edit</button>
+                        <button onClick={() => handleDelete(teacherData._id)} className="bg-blue-500 text-white px-3 py-1 rounded">Delete</button>
+                      </td>
+                    </> : <></>}
                   </tr>
                 ))
               ) : (

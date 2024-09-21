@@ -48,7 +48,7 @@ const StudentDashboard = ({ user }) => {
       const studentData = {
         name,
         gender,
-        dob: new Date(dob), 
+        dob: new Date(dob),
         contactDetails,
         class: classId,
         feesPaid,
@@ -90,7 +90,7 @@ const StudentDashboard = ({ user }) => {
     setStudentForm({
       name: studentData.name,
       gender: studentData.gender,
-      dob: studentData.dob.split('T')[0], 
+      dob: studentData.dob.split('T')[0],
       contactDetails: studentData.contactDetails,
       class: studentData.class ? studentData.class._id : '',
       feesPaid: studentData.feesPaid,
@@ -118,7 +118,9 @@ const StudentDashboard = ({ user }) => {
                 <th style={{ fontFamily: 'monospace' }} className="py-2 px-4 bg-green-300 shadow-xl">Contact</th>
                 <th style={{ fontFamily: 'monospace' }} className="py-2 px-4 bg-green-300 shadow-xl">Class</th>
                 <th style={{ fontFamily: 'monospace' }} className="py-2 px-4 bg-green-300 shadow-xl">Fees Paid</th>
-                <th style={{ fontFamily: 'monospace' }} className="py-2 px-4 bg-green-300 shadow-xl">Actions</th>
+                {user.role == 'admin' ? <>
+                  <th style={{ fontFamily: 'monospace' }} className="py-2 px-4 bg-green-300 shadow-xl">Actions</th>
+                </> : <></>}
               </tr>
             </thead>
             <tbody>
@@ -131,10 +133,12 @@ const StudentDashboard = ({ user }) => {
                     <td style={{ fontFamily: 'monospace' }} className="py-2 px-4  shadow-xl rounded-xl">{studentData.contactDetails}</td>
                     <td style={{ fontFamily: 'monospace' }} className="py-2 px-4  shadow-xl rounded-xl">{studentData.class ? studentData.class.name : 'N/A'}</td>
                     <td style={{ fontFamily: 'monospace' }} className="py-2 px-4  shadow-xl rounded-xl">{studentData.feesPaid ? 'Yes' : 'No'}</td>
-                    <td style={{ fontFamily: 'monospace' }} className="py-2 px-4  shadow-xl rounded-xl">
-                      <button onClick={() => handleEdit(studentData)} className="bg-orange-400 text-white px-3 py-1 rounded">Edit</button>
-                      <button onClick={() => handleDelete(studentData._id)} className="bg-blue-500 text-white px-3 py-1 rounded">Delete</button>
-                    </td>
+                    {user.role == 'admin' ? <>
+                      <td style={{ fontFamily: 'monospace' }} className="py-2 px-4  shadow-xl rounded-xl">
+                        <button onClick={() => handleEdit(studentData)} className="bg-orange-400 text-white px-3 py-1 rounded">Edit</button>
+                        <button onClick={() => handleDelete(studentData._id)} className="bg-blue-500 text-white px-3 py-1 rounded">Delete</button>
+                      </td>
+                    </> : <></>}
                   </tr>
                 ))
               ) : (
