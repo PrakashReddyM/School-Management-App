@@ -4,9 +4,10 @@ const cors = require('cors');
 const connectDB = require('./config/db');
 const errorHandler = require('./middleware/errorHandler');
 const cookieParser = require('cookie-parser');
+const path = require('path')
 
 // Load environment variables
-dotenv.config({path:'config/.env'});
+dotenv.config({path:"config/.env"});
 
 // Connect to MongoDB
 connectDB();
@@ -17,6 +18,7 @@ const options = {
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
   credentials: true,
 }
+// const __dirname = path.resolve()
 
 // Middleware
 app.use(express.json());
@@ -28,6 +30,11 @@ app.use('/api/classes', require('./routes/classRoute'));
 app.use('/api/teachers', require('./routes/teacherRoute'));
 app.use('/api/students', require('./routes/studentRoute'));
 app.use('/api/auth', require('./routes/userRoute'))
+
+app.use(express.static(path.join(__dirname,"/frontend/build")))
+app.get('*',(req,res)=>{
+  res.send(path.resolve(__dirname, "frontend","build","index.html"))
+})
 
 // Error handling middleware
 app.use(errorHandler);

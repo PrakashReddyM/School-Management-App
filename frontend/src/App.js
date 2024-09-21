@@ -13,7 +13,6 @@ import Profile from './components/Profile';
 const App = () => {
   const [showLogin,setShowLogin] = useState(true)
   const [user,setUser] = useState(null)
-  console.log(user)
   return (
     <SchoolProvider>
       <Router>

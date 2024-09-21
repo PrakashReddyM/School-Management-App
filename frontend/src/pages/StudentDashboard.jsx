@@ -48,7 +48,7 @@ const StudentDashboard = ({ user }) => {
       const studentData = {
         name,
         gender,
-        dob: new Date(dob), // Ensure dob is a Date object
+        dob: new Date(dob), 
         contactDetails,
         class: classId,
         feesPaid,
@@ -63,13 +63,11 @@ const StudentDashboard = ({ user }) => {
       }
 
       setStudents((prevStudents) => {
-        // Ensure prevStudents is treated as an array
         return isEditing
           ? prevStudents.map((stu) => (stu._id === editStudentId ? newStudent : stu))
           : [...prevStudents, newStudent]
       });
 
-      // Reset the form after submission
       setStudentForm({
         name: '',
         gender: '',
@@ -92,7 +90,7 @@ const StudentDashboard = ({ user }) => {
     setStudentForm({
       name: studentData.name,
       gender: studentData.gender,
-      dob: studentData.dob.split('T')[0], // Format the date correctly for input
+      dob: studentData.dob.split('T')[0], 
       contactDetails: studentData.contactDetails,
       class: studentData.class ? studentData.class._id : '',
       feesPaid: studentData.feesPaid,
