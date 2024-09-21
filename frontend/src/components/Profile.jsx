@@ -8,7 +8,7 @@ const Profile = ({ user,setShowLogin,setUser }) => {
 
     const handleLogout = async () => {
         try {
-            await axios.get('http://localhost:8000/api/auth/logout', { withCredentials: true });
+            await axios.get('https://school-management-app-back.onrender.com/api/auth/logout', { withCredentials: true });
             localStorage.removeItem('token');
             setUser(null);
             setShowLogin(true);
